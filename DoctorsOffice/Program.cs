@@ -7,13 +7,13 @@ namespace DoctorsOffice
 {
   class Program
   {
-    static void Main(strings[] args)
+    static void Main(string[] args)
     {
       WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
       builder.Services.AddControllersWithViews();
 
-      builder.Services.AddDbContext<ToDoListContext>(
+      builder.Services.AddDbContext<DoctorsOfficeContext>(
                         dbContextOptions => dbContextOptions
                           .UseMySql(
                             builder.Configuration["ConnectionStrings:DefaultConnection"], ServerVersion.AutoDetect(builder.Configuration["ConnectionStrings:DefaultConnection"]
