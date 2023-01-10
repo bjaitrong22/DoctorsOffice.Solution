@@ -43,6 +43,23 @@ namespace DoctorsOffice.Controllers
             .FirstOrDefault(doctor => doctor.DoctorId == id);
       return View(thisDoctor);
     }
+
+    public ActionResult Edit(int id)
+    {
+      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
+      return View(thisDoctor);
+    }
+
+    [HttpPost]
+
+    public ActionResult Edit(Doctor doctor)
+    {
+        _db.Doctors.Update(doctor);
+        _db.SaveChanges();
+        return RedirectToAction("Index");
+    }
+
+    
   }
 
 }
