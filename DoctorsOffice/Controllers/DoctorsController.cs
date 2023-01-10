@@ -59,7 +59,20 @@ namespace DoctorsOffice.Controllers
         return RedirectToAction("Index");
     }
 
+    public ActionResult Delete(int id)
+    {
+      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
+      return View(thisDoctor);
+    }
 
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Doctor thisDoctor = _db.Doctors.FirstOrDefault(doctor => doctor.DoctorId == id);
+      _db.Doctors.Remove(thisDoctor);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   }
 
 }
