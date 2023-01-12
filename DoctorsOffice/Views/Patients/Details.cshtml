@@ -31,4 +31,5 @@ else
 }
 
 <p>@Html.ActionLink("Manage Patients", "Index")</p>
+<p>@Html.ActionLink("Edit Patient", "Edit", new {id = Model.PatientId})</p>
 <p>@Html.ActionLink("Add a doctor", "AddDoctor", new {id = Model.PatientId})</p>

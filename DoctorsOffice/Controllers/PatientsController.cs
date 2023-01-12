@@ -52,6 +52,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
       return View(thisPatient);         
     }
 
-    
+    public ActionResult Edit(int id)
+    {
+      Patient thisPatient = _db.Patients.FirstOrDefault(patient => patient.PatientId == id);
+      ViewBag.DoctorId = new SelectList(_db.Doctors, "DoctorId", "Name");
+      return View(thisPatient);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Patient patient)
+    {
+      _db.Patients.Update(patient);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   } 
  }
