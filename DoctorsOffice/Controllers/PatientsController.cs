@@ -42,5 +42,16 @@ using Microsoft.AspNetCore.Mvc.Rendering;
         return RedirectToAction("Index");
       }
     }
+
+    public ActionResult Details(int id)
+    {
+      Patient thisPatient = _db.Patients
+              .Include(patient => patient.JoinEntities)
+              .ThenInclude(join => join.Doctor)
+              .FirstOrDefault(patient => patient.PatientId == id);
+      return View(thisPatient);         
+    }
+
+    
   } 
  }
