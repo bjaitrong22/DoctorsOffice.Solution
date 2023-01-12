@@ -66,5 +66,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
+
+    public ActionResult Delete(int id)
+    {
+      Patient thisPatient = _db.Patients.FirstOrDefault(patient => patient.PatientId == id);
+      return View(thisPatient);
+    }
+
+    [HttpPost, ActionName("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      Patient thisPatient = _db.Patients.FirstOrDefault(patient => patient.PatientId == id);
+      _db.Patients.Remove(thisPatient);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
   } 
  }
